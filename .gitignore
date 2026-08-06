@@ -1,0 +1,22 @@
+build/bin
+node_modules
+frontend/dist
+# Go
+*.exe
+*.test
+*.out
+
+# Salida compilada de Wails (el ícono y manifests fuente en build/ sí se versionan)
+/build/bin/
+
+# Frontend (Node)
+/frontend/node_modules/
+/frontend/dist/
+node_modules/
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Variables de entorno / secretos, por si más adelante guardas algo así
+.env
