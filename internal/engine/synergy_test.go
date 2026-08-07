@@ -28,3 +28,36 @@ func TestSynergySharedTraitIsCloserThanNone(t *testing.T) {
 			sharedTrait, noSharedTrait)
 	}
 }
+
+const epsilon = 1e-9
+
+func floatsEqual(a, b float64) bool {
+	diff := a - b
+	if diff < 0 {
+		diff = -diff
+	}
+	return diff < epsilon
+}
+
+func TestSynergyCases(t *testing.T) {
+	identical := Vector{"Anima": 1, "Vanguard": 1}
+	noOverlap := Vector{"Sniper": 1}
+	empty := Vector{}
+
+	cases := []struct {
+		name     string
+		a, b     Vector
+		expected float64
+	}{
+		{name: "vectores identicos", a: identical, b: identical, expected: 1.0},
+		{name: "sin traits en comun", a: identical, b: noOverlap, expected: 0.0},
+		{name: "vector vacio", a: empty, b: identical, expected: 0.0},
+	}
+
+	for _, c := range cases {
+		got := Synergy(c.a, c.b)
+		if !floatsEqual(got, c.expected) {
+			t.Errorf("%s: Synergy() = %f; want %f", c.name, got, c.expected)
+		}
+	}
+}
