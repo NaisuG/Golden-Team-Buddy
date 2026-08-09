@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/NaisuG/Golden-Team-Buddy/internal/board"
 	"github.com/NaisuG/Golden-Team-Buddy/internal/catalog"
 	"github.com/NaisuG/Golden-Team-Buddy/internal/engine"
 )
@@ -16,10 +17,10 @@ func main() {
 	fmt.Println("Campeones cargados:", len(c.Champions))
 	fmt.Println("Traits cargados:", len(c.Traits))
 
-	current := []string{"Illaoi"}
+	brd := board.Board{Champions: []string{"Illaoi"}}
 	level := 1
 
-	variants := engine.GenerateVariants(c, current, level)
+	variants := engine.GenerateVariants(c, brd, board.Bench{}, level)
 
 	for i, v := range variants {
 		fmt.Printf("\n%d) Total=%.2f  %v\n", i+1, v.Score.Total, v.Champions)
