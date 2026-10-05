@@ -33,7 +33,7 @@
         "-gcflags",
         "all=-N -l",
         "-o",
-        "build/bin/wails-scratch.exe"
+        "build/bin/golden-team-buddy.exe"
       ]
     },
     {
@@ -68,7 +68,7 @@
         "-gcflags",
         "all=-N -l",
         "-o",
-        "build/bin/wails-scratch.exe"
+        "build/bin/golden-team-buddy.exe"
       ]
     },
     {
@@ -103,7 +103,7 @@
         "-gcflags",
         "all=-N -l",
         "-o",
-        "build/bin/wails-scratch.exe"
+        "build/bin/golden-team-buddy.exe"
       ]
     }
   ]

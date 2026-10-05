@@ -1,22 +1,18 @@
 package catalog
 
-import (
-	"encoding/json"
-	"os"
-	"path/filepath"
-)
-
 type Breakpoint struct {
 	Style string `json:"style"`
 	Min   int    `json:"min"`
 }
 
+// Trait es un rasgo del set con sus breakpoints, ordenados de menor a mayor.
 type Trait struct {
 	Key         string       `json:"key"`
 	Name        string       `json:"name"`
 	Breakpoints []Breakpoint `json:"styles"`
 }
 
+// Champion es un campeón del set. Cost es su costo en tienda (1 a 5).
 type Champion struct {
 	Key    string   `json:"key"`
 	Name   string   `json:"name"`
@@ -24,6 +20,7 @@ type Champion struct {
 	Traits []string `json:"traits"`
 }
 
+// Catalog contiene los campeones y traits del set, indexados por su key.
 type Catalog struct {
 	Champions map[string]Champion
 	Traits    map[string]Trait
@@ -48,42 +45,4 @@ func (c *Catalog) TraitsOf(championKey string) []Trait {
 		}
 	}
 	return traits
-}
-
-type championsFile struct {
-	Champions []Champion `json:"champions"`
-}
-
-type traitsFile struct {
-	Traits []Trait `json:"traits"`
-}
-
-func LoadJSON(dataDir string) (*Catalog, error) {
-	c := New()
-
-	champData, err := os.ReadFile(filepath.Join(dataDir, "champions.json"))
-	if err != nil {
-		return nil, err
-	}
-	var cf championsFile
-	if err := json.Unmarshal(champData, &cf); err != nil {
-		return nil, err
-	}
-	for _, champ := range cf.Champions {
-		c.Champions[champ.Key] = champ
-	}
-
-	traitData, err := os.ReadFile(filepath.Join(dataDir, "traits.json"))
-	if err != nil {
-		return nil, err
-	}
-	var tf traitsFile
-	if err := json.Unmarshal(traitData, &tf); err != nil {
-		return nil, err
-	}
-	for _, trait := range tf.Traits {
-		c.Traits[trait.Key] = trait
-	}
-
-	return c, nil
 }

@@ -7,6 +7,15 @@ import (
 	"github.com/NaisuG/Golden-Team-Buddy/internal/catalog"
 )
 
+func bestCandidate(t *testing.T, c *catalog.Catalog, line []string) candidateScore {
+	t.Helper()
+	ranked := rankedCandidates(c, line, Owned{}, 5, nil)
+	if len(ranked) == 0 {
+		t.Fatal("rankedCandidates no devolvió candidatos")
+	}
+	return ranked[0]
+}
+
 func TestTargetSize(t *testing.T) {
 	cases := map[int]int{
 		0: 0, 1: 6, 5: 6, 6: 8, 7: 8, 8: 9, 9: 10, 10: 10,
@@ -22,16 +31,16 @@ func TestIsReachableIgnoresOwnedRegardlessOfCost(t *testing.T) {
 	c := catalog.New()
 	c.Champions["Caro"] = catalog.Champion{Key: "Caro", Cost: 5}
 
-	if isReachable(c, "Caro", nil, 1) {
+	if isReachable(c, "Caro", Owned{}, 1) {
 		t.Error("Caro (costo 5) a nivel 1 sin estar owned debería ser inalcanzable")
 	}
-	owned := map[string]bool{"Caro": true}
+	owned := Owned{Bench: map[string]bool{"Caro": true}}
 	if !isReachable(c, "Caro", owned, 1) {
 		t.Error("Caro ya conseguido (owned) debería ser alcanzable sin importar el costo")
 	}
 }
 
-func TestBestNextChampionPicksDoubleBreakpoint(t *testing.T) {
+func TestRankedCandidatesPicksDoubleBreakpoint(t *testing.T) {
 	c := catalog.New()
 	c.Traits["X"] = catalog.Trait{Key: "X", Breakpoints: []catalog.Breakpoint{{Style: "bronze", Min: 2}}}
 	c.Traits["Y"] = catalog.Trait{Key: "Y", Breakpoints: []catalog.Breakpoint{{Style: "bronze", Min: 1}}}
@@ -40,21 +49,17 @@ func TestBestNextChampionPicksDoubleBreakpoint(t *testing.T) {
 	c.Champions["B"] = catalog.Champion{Key: "B", Traits: []string{"X", "Y"}}
 	c.Champions["C"] = catalog.Champion{Key: "C", Traits: []string{"X"}}
 
-	got, score := BestNextChampion(c, []string{"A"}, nil, 5, nil)
+	best := bestCandidate(t, c, []string{"A"})
+	got, score := best.key, best.score
 
 	if got != "B" {
-		t.Errorf("BestNextChampion() = %q, quería %q", got, "B")
+		t.Errorf("mejor candidato = %q, quería %q", got, "B")
 	}
 	if score.TraitStrength <= 1 {
 		t.Errorf("TraitStrength de agregar %q = %v, esperaba más de 1", got, score.TraitStrength)
 	}
 }
 
-// Caso concreto de la conversación: cruzar un breakpoint nuevo (Fresh,
-// bronce en 1) tiene que ganarle a apilar una copia de más en un trait
-// que ya cruzó su bronce y no llega al siguiente (Shared, de 2 a 3, con
-// plata recién en 4) -- sin importar que la copia de más comparta trait
-// con toda la línea y la nueva no comparta nada todavía.
 func TestBreakpointCrossingBeatsRedundantStacking(t *testing.T) {
 	c := catalog.New()
 	c.Traits["Shared"] = catalog.Trait{Key: "Shared", Breakpoints: []catalog.Breakpoint{{Style: "bronze", Min: 2}, {Style: "silver", Min: 4}}}
@@ -65,16 +70,13 @@ func TestBreakpointCrossingBeatsRedundantStacking(t *testing.T) {
 	c.Champions["Redundant"] = catalog.Champion{Key: "Redundant", Traits: []string{"Shared"}}
 	c.Champions["Fresh1"] = catalog.Champion{Key: "Fresh1", Traits: []string{"Fresh"}}
 
-	got, _ := BestNextChampion(c, []string{"Base1", "Base2"}, nil, 5, nil)
+	got := bestCandidate(t, c, []string{"Base1", "Base2"}).key
 
 	if got != "Fresh1" {
-		t.Errorf("BestNextChampion() = %q, quería %q -- cruzar un breakpoint nuevo debe ganarle a una copia que no cruza nada, sin importar la sinergia", got, "Fresh1")
+		t.Errorf("mejor candidato = %q, quería %q", got, "Fresh1")
 	}
 }
 
-// Caso confirmado en la conversación: empujar un trait activo de bronce
-// a plata (breakpoint real) vale más que abrir dos traits nuevos sin
-// completar ninguno.
 func TestPushingToNextTierBeatsStartingTwoNewTraits(t *testing.T) {
 	c := catalog.New()
 	c.Traits["Active"] = catalog.Trait{Key: "Active", Breakpoints: []catalog.Breakpoint{{Style: "bronze", Min: 2}, {Style: "silver", Min: 4}}}
@@ -88,27 +90,27 @@ func TestPushingToNextTierBeatsStartingTwoNewTraits(t *testing.T) {
 	c.Champions["NewStart1"] = catalog.Champion{Key: "NewStart1", Traits: []string{"New1"}}
 	c.Champions["NewStart2"] = catalog.Champion{Key: "NewStart2", Traits: []string{"New2"}}
 
-	pushScore := ComputeScore(c, []string{"Base1", "Base2", "ActivePush1", "ActivePush2"}, nil, 5)
-	startScore := ComputeScore(c, []string{"Base1", "Base2", "NewStart1", "NewStart2"}, nil, 5)
+	pushScore := ComputeScore(c, []string{"Base1", "Base2", "ActivePush1", "ActivePush2"}, Owned{})
+	startScore := ComputeScore(c, []string{"Base1", "Base2", "NewStart1", "NewStart2"}, Owned{})
 
 	if pushScore.TraitStrength <= startScore.TraitStrength {
-		t.Errorf("empujar bronce->plata (TraitStrength=%v) debería superar abrir dos traits nuevos sin completar (TraitStrength=%v)",
+		t.Errorf("subir a plata (TraitStrength=%v) debería superar a abrir dos traits incompletos (TraitStrength=%v)",
 			pushScore.TraitStrength, startScore.TraitStrength)
 	}
 }
 
-func TestBuildLineLevelZeroAddsNothing(t *testing.T) {
+func TestBuildLinesLevelZeroAddsNothing(t *testing.T) {
 	c := catalog.New()
 	c.Champions["A"] = catalog.Champion{Key: "A"}
 
-	result := BuildLine(c, nil, nil, 0, nil)
+	result := buildLines(c, nil, Owned{}, 0, nil)[0]
 
 	if len(result.Champions) != 0 {
-		t.Errorf("con nivel 0 (target 0), BuildLine agregó %d campeones; esperaba 0", len(result.Champions))
+		t.Errorf("con nivel 0 (target 0), buildLines agregó %d campeones; esperaba 0", len(result.Champions))
 	}
 }
 
-func TestBuildLineReachesTargetSize(t *testing.T) {
+func TestBuildLinesReachesTargetSize(t *testing.T) {
 	c := catalog.New()
 	c.Traits["X"] = catalog.Trait{Key: "X", Breakpoints: []catalog.Breakpoint{{Style: "bronze", Min: 2}}}
 	names := []string{"A", "B", "C", "D", "E", "F", "G", "H"}
@@ -116,23 +118,16 @@ func TestBuildLineReachesTargetSize(t *testing.T) {
 		c.Champions[n] = catalog.Champion{Key: n, Traits: []string{"X"}}
 	}
 
-	result := BuildLine(c, nil, nil, 1, nil)
+	result := buildLines(c, nil, Owned{}, 1, nil)[0]
 
 	want := TargetSize(1)
 	if len(result.Champions) != want {
-		t.Errorf("BuildLine con nivel 1 devolvió %d campeones; esperaba %d", len(result.Champions), want)
+		t.Errorf("buildLines con nivel 1 devolvió %d campeones; esperaba %d", len(result.Champions), want)
 	}
 }
 
-// El bug del día: banca contaba para rasgos/sinergia sin ganárselo.
-// Acá, "Useless" no aporta ningún trait -- estar en banca (ya
-// conseguido, gratis) no debería alcanzar para que la línea final lo
-// incluya si no suma nada.
 func TestGenerateVariantsDoesNotForceUselessBenchMember(t *testing.T) {
 	c := catalog.New()
-	// bronce en 1: un solo portador de X ya cruza el breakpoint, así que
-	// "un X" y "nada" nunca pueden empatar en 0-0 en el primer paso --
-	// eso evitaría que el test dependa del orden de mapa.
 	c.Traits["X"] = catalog.Trait{Key: "X", Breakpoints: []catalog.Breakpoint{{Style: "bronze", Min: 1}}}
 	c.Champions["Useless"] = catalog.Champion{Key: "Useless"}
 	names := []string{"A", "B", "C", "D", "E", "F", "G", "H"}
@@ -148,18 +143,13 @@ func TestGenerateVariantsDoesNotForceUselessBenchMember(t *testing.T) {
 	}
 	for _, champ := range variants[0].Champions {
 		if champ == "Useless" {
-			t.Error("GenerateVariants incluyó a un campeón de banca que no aporta nada, solo por estar ya conseguido -- banca no debería forzar inclusión")
+			t.Error("GenerateVariants incluyó a Useless desde la banca sin que aporte nada")
 		}
 	}
 }
 
-// Recombinación: tablero tampoco debería forzar inclusión. Si lo que
-// tenés puesto no aporta nada, la búsqueda tiene que poder dejarlo
-// afuera igual que a cualquier candidato débil.
 func TestGenerateVariantsCanDropAWeakBoardMember(t *testing.T) {
 	c := catalog.New()
-	// mismo motivo que en el test de banca: bronce en 1 para que no haya
-	// empate 0-0 posible en el primer paso.
 	c.Traits["X"] = catalog.Trait{Key: "X", Breakpoints: []catalog.Breakpoint{{Style: "bronze", Min: 1}}}
 	c.Champions["Useless"] = catalog.Champion{Key: "Useless"}
 	names := []string{"A", "B", "C", "D", "E", "F", "G", "H"}
@@ -175,7 +165,50 @@ func TestGenerateVariantsCanDropAWeakBoardMember(t *testing.T) {
 	}
 	for _, champ := range variants[0].Champions {
 		if champ == "Useless" {
-			t.Error("GenerateVariants mantuvo en la línea a un campeón de tablero que no aporta nada -- tablero tampoco debería forzar inclusión")
+			t.Error("GenerateVariants mantuvo a Useless del tablero sin que aporte nada")
+		}
+	}
+}
+
+func TestGenerateVariantsKeepsContributingOwnedChampion(t *testing.T) {
+	c := catalog.New()
+	c.Traits["X"] = catalog.Trait{Key: "X", Breakpoints: []catalog.Breakpoint{{Style: "bronze", Min: 1}}}
+	names := []string{"A", "B", "C", "D", "E", "F", "G", "H"}
+	for _, n := range names {
+		c.Champions[n] = catalog.Champion{Key: n, Traits: []string{"X"}}
+	}
+
+	brd := board.Board{Champions: []string{"H"}}
+	variants := GenerateVariants(c, brd, board.Bench{}, 1)
+
+	if len(variants) == 0 {
+		t.Fatal("GenerateVariants no devolvió ninguna variante")
+	}
+	for _, champ := range variants[0].Champions {
+		if champ == "H" {
+			return
+		}
+	}
+	t.Errorf("GenerateVariants descartó a H, que está en tablero y aporta a X: %v", variants[0].Champions)
+}
+
+func TestGenerateVariantsGivesNoPreferenceToBench(t *testing.T) {
+	c := catalog.New()
+	c.Traits["X"] = catalog.Trait{Key: "X", Breakpoints: []catalog.Breakpoint{{Style: "bronze", Min: 1}}}
+	names := []string{"A", "B", "C", "D", "E", "F", "G", "H"}
+	for _, n := range names {
+		c.Champions[n] = catalog.Champion{Key: n, Traits: []string{"X"}}
+	}
+
+	bench := board.Bench{Champions: []string{"H"}}
+	variants := GenerateVariants(c, board.Board{}, bench, 1)
+
+	if len(variants) == 0 {
+		t.Fatal("GenerateVariants no devolvió ninguna variante")
+	}
+	for _, champ := range variants[0].Champions {
+		if champ == "H" {
+			t.Errorf("H está en banca y no debería tener preferencia: %v", variants[0].Champions)
 		}
 	}
 }
@@ -222,20 +255,12 @@ func TestGenerateVariantsSuppressesDuplicateSubVariant(t *testing.T) {
 		t.Fatal("GenerateVariants no devolvió ninguna variante")
 	}
 	if len(variants[0].Children) != 0 {
-		t.Errorf("con A y B empatados pero solo una composición posible, esperaba 0 sub-variantes (duplicada); tiene %d",
+		t.Errorf("esperaba 0 sub-variantes, hay %d",
 			len(variants[0].Children))
 	}
 }
 
-// Reconstrucción en miniatura del hallazgo real de la conversación
-// (Leona vs. Veigar+Lissandra): apilar de más un trait ya activo
-// (Early) puede ganarle, PASO A PASO, a empezar a construir un segundo
-// trait (Late1) que recién vale algo una vez completo. Pero la
-// composición óptima de 6 en este catálogo SÍ activa los dos
-// (Seed+Early+Late1 = TraitStrength 3) -- y ese óptimo solo aparece si
-// la búsqueda compara líneas completas, no si se compromete paso a paso
-// con lo que se ve mejor en el momento.
-func TestBuildLineFindsOptimumGreedyWouldMiss(t *testing.T) {
+func TestBuildLinesFindsOptimumGreedyWouldMiss(t *testing.T) {
 	c := catalog.New()
 	c.Traits["Seed"] = catalog.Trait{Key: "Seed", Breakpoints: []catalog.Breakpoint{{Style: "bronze", Min: 1}}}
 	c.Traits["Early"] = catalog.Trait{Key: "Early", Breakpoints: []catalog.Breakpoint{{Style: "bronze", Min: 2}}}
@@ -250,21 +275,14 @@ func TestBuildLineFindsOptimumGreedyWouldMiss(t *testing.T) {
 	c.Champions["LateSeed"] = catalog.Champion{Key: "LateSeed", Traits: []string{"Late1"}}
 	c.Champions["LatePartner"] = catalog.Champion{Key: "LatePartner", Traits: []string{"Late1"}}
 
-	result := BuildLine(c, nil, nil, 1, nil)
+	result := buildLines(c, nil, Owned{}, 1, nil)[0]
 
 	if result.Score.TraitStrength != 3 {
-		t.Errorf("BuildLine encontró TraitStrength=%v (%v); el óptimo real de este catálogo es 3 (Seed+Early+Late1) -- cayó en la trampa de apilar Early de más en vez de completar Late1",
+		t.Errorf("buildLines encontró TraitStrength=%v (%v), quería 3",
 			result.Score.TraitStrength, result.Champions)
 	}
 }
 
-// El chequeo viejo de sub-variante solo miraba el primer paso -- acá,
-// Base1 es un primer pick único y sin ningún empate en ese momento (el
-// chequeo viejo nunca hubiera mostrado ninguna sub-variante). Recién
-// varios pasos después aparece un empate real: LateA1+LateA2 y
-// LateB1+LateB2 dan exactamente el mismo TraitStrength final, siendo
-// composiciones genuinamente distintas. Solo se detecta mirando el
-// resultado final de la búsqueda.
 func TestGenerateVariantsFindsDeepTieSubVariant(t *testing.T) {
 	c := catalog.New()
 	c.Traits["Seed"] = catalog.Trait{Key: "Seed", Breakpoints: []catalog.Breakpoint{{Style: "bronze", Min: 1}}}
@@ -287,7 +305,7 @@ func TestGenerateVariantsFindsDeepTieSubVariant(t *testing.T) {
 		t.Fatal("GenerateVariants no devolvió ninguna variante")
 	}
 	if len(variants[0].Children) != 1 {
-		t.Fatalf("esperaba 1 sub-variante (empate profundo entre Late1 y Late2); encontró %d", len(variants[0].Children))
+		t.Fatalf("esperaba 1 sub-variante, hay %d", len(variants[0].Children))
 	}
 	if variants[0].Score.TraitStrength != variants[0].Children[0].Score.TraitStrength {
 		t.Errorf("la sub-variante debería empatar en TraitStrength con la principal: %v vs %v",
@@ -297,11 +315,28 @@ func TestGenerateVariantsFindsDeepTieSubVariant(t *testing.T) {
 		t.Error("la sub-variante no debería ser exactamente la misma composición que la principal")
 	}
 }
+
+func TestRankedCandidatesIsDeterministicOnTies(t *testing.T) {
+	c := catalog.New()
+	c.Traits["NeedsFour"] = catalog.Trait{Key: "NeedsFour", Breakpoints: []catalog.Breakpoint{{Style: "bronze", Min: 4}}}
+	c.Champions["Amy"] = catalog.Champion{Key: "Amy", Traits: []string{"NeedsFour"}}
+	c.Champions["Zed"] = catalog.Champion{Key: "Zed", Traits: []string{"NeedsFour"}}
+
+	first := bestCandidate(t, c, nil).key
+
+	for i := 0; i < 200; i++ {
+		got := bestCandidate(t, c, nil).key
+		if got != first {
+			t.Fatalf("corrida %d: el mejor candidato fue %q, la primera corrida dio %q", i, got, first)
+		}
+	}
+}
+
 func TestSignatureIsOrderIndependent(t *testing.T) {
 	a := signature([]string{"Illaoi", "Jinx", "Briar"})
 	b := signature([]string{"Briar", "Illaoi", "Jinx"})
 	if a != b {
-		t.Errorf("signature() debería dar lo mismo sin importar el orden: %q vs %q", a, b)
+		t.Errorf("signature() depende del orden: %q vs %q", a, b)
 	}
 }
 

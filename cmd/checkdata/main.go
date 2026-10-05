@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"strings"
 
 	"github.com/NaisuG/Golden-Team-Buddy/internal/board"
 	"github.com/NaisuG/Golden-Team-Buddy/internal/catalog"
@@ -10,7 +11,7 @@ import (
 )
 
 func main() {
-	c, err := catalog.LoadJSON("scripts/etl")
+	c, err := catalog.LoadEmbedded()
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -18,14 +19,20 @@ func main() {
 	fmt.Println("Traits cargados:", len(c.Traits))
 
 	brd := board.Board{Champions: []string{"Illaoi"}}
-	level := 1
-
-	variants := engine.GenerateVariants(c, brd, board.Bench{}, level)
+	variants := engine.GenerateVariants(c, brd, board.Bench{}, brd.Level())
 
 	for i, v := range variants {
-		fmt.Printf("\n%d) Total=%.2f  %v\n", i+1, v.Score.Total, v.Champions)
+		fmt.Printf("\n%d) %v\n   %s\n", i+1, v.Champions, formatTraits(v.Traits))
 		for j, sub := range v.Children {
-			fmt.Printf("   %d%c) Total=%.2f  %v\n", i+1, rune('a'+j), sub.Score.Total, sub.Champions)
+			fmt.Printf("   %d%c) %v\n       %s\n", i+1, rune('a'+j), sub.Champions, formatTraits(sub.Traits))
 		}
 	}
+}
+
+func formatTraits(traits []engine.ActiveTrait) string {
+	parts := make([]string, len(traits))
+	for i, t := range traits {
+		parts[i] = fmt.Sprintf("%d %s (%s)", t.Count, t.Name, t.Style)
+	}
+	return strings.Join(parts, ", ")
 }

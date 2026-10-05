@@ -49,15 +49,15 @@ func TestSynergyCases(t *testing.T) {
 		a, b     Vector
 		expected float64
 	}{
-		{name: "vectores identicos", a: identical, b: identical, expected: 1.0},
-		{name: "sin traits en comun", a: identical, b: noOverlap, expected: 0.0},
-		{name: "vector vacio", a: empty, b: identical, expected: 0.0},
+		{name: "vectores idénticos", a: identical, b: identical, expected: 1.0},
+		{name: "sin traits en común", a: identical, b: noOverlap, expected: 0.0},
+		{name: "vector vacío", a: empty, b: identical, expected: 0.0},
 	}
 
 	for _, c := range cases {
 		got := Synergy(c.a, c.b)
 		if !floatsEqual(got, c.expected) {
-			t.Errorf("%s: Synergy() = %f; want %f", c.name, got, c.expected)
+			t.Errorf("%s: Synergy() = %f, quería %f", c.name, got, c.expected)
 		}
 	}
 }

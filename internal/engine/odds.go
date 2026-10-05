@@ -8,6 +8,7 @@ var PoolSize = map[int]int{
 	5: 9,
 }
 
+// ShopOddsByLevel es la probabilidad de tienda por nivel y costo de campeón.
 var ShopOddsByLevel = map[int]map[int]float64{
 	1:  {1: 1.00, 2: 0.00, 3: 0.00, 4: 0.00, 5: 0.00},
 	2:  {1: 1.00, 2: 0.00, 3: 0.00, 4: 0.00, 5: 0.00},

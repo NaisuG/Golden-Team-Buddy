@@ -1,0 +1,1047 @@
+{
+  "season": "set17",
+  "traits": [
+    {
+      "key": "Anima",
+      "ingameKey": "TFT17_AnimaSquad",
+      "name": "Anima",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Anima_normal_1774318681-Anima.svg",
+      "type": "ORIGIN",
+      "styles": [
+        {
+          "style": "bronze",
+          "min": 3,
+          "max": 4
+        },
+        {
+          "style": "gold",
+          "min": 5
+        }
+      ],
+      "stats": {
+        "3": "Start Researching!",
+        "5": "After each player combat, gain loot!"
+      }
+    },
+    {
+      "key": "Arbiter",
+      "ingameKey": "TFT17_ADMIN",
+      "name": "Arbiter",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Arbiter_normal_1774318884-Arbiter.svg",
+      "type": "ORIGIN",
+      "styles": [
+        {
+          "style": "bronze",
+          "min": 2,
+          "max": 2
+        },
+        {
+          "style": "gold",
+          "min": 3
+        }
+      ],
+      "stats": {
+        "2": "Choose a cause and effect for your law",
+        "3": "Effects are stronger."
+      }
+    },
+    {
+      "key": "Arcana",
+      "ingameKey": "TFT17_TahmKenchUniqueTrait",
+      "name": "Oracle",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Arcana_normal_1774318783-Arcana.svg",
+      "type": "ORIGIN",
+      "styles": [
+        {
+          "style": "gold",
+          "min": 1
+        }
+      ],
+      "stats": {}
+    },
+    {
+      "key": "Bastion",
+      "ingameKey": "TFT17_ResistTank",
+      "name": "Bastion",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Bastion_normal_1774319124-Bastion.svg",
+      "type": "CLASS",
+      "styles": [
+        {
+          "style": "bronze",
+          "min": 2,
+          "max": 3
+        },
+        {
+          "style": "silver",
+          "min": 4,
+          "max": 5
+        },
+        {
+          "style": "gold",
+          "min": 6
+        }
+      ],
+      "stats": {
+        "2": "16 %i:scaleArmor%%i:scaleMR%",
+        "4": "40 %i:scaleArmor%%i:scaleMR%",
+        "6": "60 %i:scaleArmor%%i:scaleMR%; Non-Bastions gain an additional 20 %i:scaleArmor%%i:scaleMR%."
+      }
+    },
+    {
+      "key": "Brawler",
+      "ingameKey": "TFT17_HPTank",
+      "name": "Brawler",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Brawler_normal_1774319111-Brawler.svg",
+      "type": "CLASS",
+      "styles": [
+        {
+          "style": "bronze",
+          "min": 2,
+          "max": 3
+        },
+        {
+          "style": "silver",
+          "min": 4,
+          "max": 5
+        },
+        {
+          "style": "gold",
+          "min": 6
+        }
+      ],
+      "stats": {
+        "2": "+25% maximum Health",
+        "4": "+45% maximum Health",
+        "6": "+65% maximum Health"
+      }
+    },
+    {
+      "key": "Bulwark",
+      "ingameKey": "TFT17_ShenUniqueTrait",
+      "name": "Bulwark",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Bulwark_normal_1774318757-Bulwark.svg",
+      "type": "ORIGIN",
+      "styles": [
+        {
+          "style": "gold",
+          "min": 1
+        }
+      ],
+      "stats": {}
+    },
+    {
+      "key": "Challenger",
+      "ingameKey": "TFT17_ASTrait",
+      "name": "Challenger",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Challenger_normal_1774319013-Challenger.svg",
+      "type": "CLASS",
+      "styles": [
+        {
+          "style": "bronze",
+          "min": 2,
+          "max": 2
+        },
+        {
+          "style": "silver",
+          "min": 3,
+          "max": 3
+        },
+        {
+          "style": "silver",
+          "min": 4,
+          "max": 4
+        },
+        {
+          "style": "gold",
+          "min": 5
+        }
+      ],
+      "stats": {
+        "2": "15% %i:scaleAS%",
+        "3": "28% %i:scaleAS%",
+        "4": "42% %i:scaleAS%",
+        "5": "55% %i:scaleAS%"
+      }
+    },
+    {
+      "key": "Channeler",
+      "ingameKey": "TFT17_ManaTrait",
+      "name": "Conduit",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Channeler_normal_1774319181-Channeler.svg",
+      "type": "CLASS",
+      "styles": [
+        {
+          "style": "bronze",
+          "min": 2,
+          "max": 2
+        },
+        {
+          "style": "silver",
+          "min": 3,
+          "max": 3
+        },
+        {
+          "style": "silver",
+          "min": 4,
+          "max": 4
+        },
+        {
+          "style": "gold",
+          "min": 5
+        }
+      ],
+      "stats": {
+        "2": "1 %i:TFTManaRegen% | 3 %i:TFTManaRegen%",
+        "3": "1 %i:TFTManaRegen% | 5 %i:TFTManaRegen%",
+        "4": "2 %i:TFTManaRegen% | 7 %i:TFTManaRegen%",
+        "5": "2 %i:TFTManaRegen% | 9 %i:TFTManaRegen%"
+      }
+    },
+    {
+      "key": "Commander",
+      "ingameKey": "TFT17_SonaUniqueTrait",
+      "name": "Commander",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Commander_normal_1774319058-Commander.svg",
+      "type": "CLASS",
+      "styles": [
+        {
+          "style": "gold",
+          "min": 1
+        }
+      ],
+      "stats": {}
+    },
+    {
+      "key": "DarkLady",
+      "ingameKey": "TFT17_MorganaUniqueTrait",
+      "name": "Dark Lady",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/DarkLady_normal_1774318826-DarkLady.svg",
+      "type": "ORIGIN",
+      "styles": [
+        {
+          "style": "gold",
+          "min": 1
+        }
+      ],
+      "stats": {}
+    },
+    {
+      "key": "DarkStar",
+      "ingameKey": "TFT17_DarkStar",
+      "name": "Dark Star",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/DarkStar_normal_1774318813-DarkStar.svg",
+      "type": "ORIGIN",
+      "styles": [
+        {
+          "style": "bronze",
+          "min": 2,
+          "max": 3
+        },
+        {
+          "style": "silver",
+          "min": 4,
+          "max": 5
+        },
+        {
+          "style": "gold",
+          "min": 6,
+          "max": 8
+        },
+        {
+          "style": "chromatic",
+          "min": 9
+        }
+      ],
+      "stats": {
+        "2": "Dark Stars create a black hole that consumes enemies at 8% max health.",
+        "4": "AND they gain 45% %i:scaleAD%%i:scaleAP%.",
+        "6": "AND the strongest Dark Star unit goes supermassive, gaining 70% effectiveness from Dark Star, and creates 2 minor Black Holes.",
+        "9": "All Dark Stars are supermassive. At level 10, CONSUME EVERYONE."
+      }
+    },
+    {
+      "key": "DivineDuelist",
+      "ingameKey": "TFT17_FioraUniqueTrait",
+      "name": "Divine Duelist",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/DivineDuelist_normal_1774319099-DivineDuelist.svg",
+      "type": "CLASS",
+      "styles": [
+        {
+          "style": "gold",
+          "min": 1
+        }
+      ],
+      "stats": {}
+    },
+    {
+      "key": "Doomer",
+      "ingameKey": "TFT17_VexUniqueTrait",
+      "name": "Doomer",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Doomer_normal_1774318972-Doomer.svg",
+      "type": "ORIGIN",
+      "styles": [
+        {
+          "style": "gold",
+          "min": 1
+        }
+      ],
+      "stats": {}
+    },
+    {
+      "key": "Eradicator",
+      "ingameKey": "TFT17_JhinUniqueTrait",
+      "name": "Eradicator",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Eradicator_normal_1774708939-Singularity_normal_1774318951-Singularity.svg",
+      "type": "ORIGIN",
+      "styles": [
+        {
+          "style": "gold",
+          "min": 1
+        }
+      ],
+      "stats": {}
+    },
+    {
+      "key": "FactoryNew",
+      "ingameKey": "TFT17_GravesTrait",
+      "name": "Factory New",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/FactoryNew_normal_1774318923-FactoryNew.svg",
+      "type": "ORIGIN",
+      "styles": [
+        {
+          "style": "gold",
+          "min": 1
+        }
+      ],
+      "stats": {}
+    },
+    {
+      "key": "Fateweaver",
+      "ingameKey": "TFT17_Fateweaver",
+      "name": "Fateweaver",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Fateweaver_normal_1774319142-Fateweaver.svg",
+      "type": "CLASS",
+      "styles": [
+        {
+          "style": "bronze",
+          "min": 2,
+          "max": 3
+        },
+        {
+          "style": "gold",
+          "min": 4
+        }
+      ],
+      "stats": {
+        "2": "Chance effects on abilities are Lucky.",
+        "4": "Gain 20% Crit Chance and 20% Crit Damage. Critical strikes are also Lucky."
+      }
+    },
+    {
+      "key": "GalaxyHunter",
+      "ingameKey": "TFT17_ZedUniqueTrait",
+      "name": "Galaxy Hunter",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/GalaxyHunter_normal_1774319155-GalaxyHunter.svg",
+      "type": "CLASS",
+      "styles": [
+        {
+          "style": "gold",
+          "min": 1
+        }
+      ],
+      "stats": {}
+    },
+    {
+      "key": "GunGoddess",
+      "ingameKey": "TFT17_MissFortuneUniqueTrait",
+      "name": "Gun Goddess",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/GunGoddess_normal_1774318987-GunGoddess.svg",
+      "type": "CLASS",
+      "styles": [
+        {
+          "style": "gold",
+          "min": 1
+        }
+      ],
+      "stats": {}
+    },
+    {
+      "key": "Marauder",
+      "ingameKey": "TFT17_MeleeTrait",
+      "name": "Marauder",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Marauder_normal_1777465718-Slayer_normal_1762918274-Slayer.svg",
+      "type": "CLASS",
+      "styles": [
+        {
+          "style": "bronze",
+          "min": 2,
+          "max": 3
+        },
+        {
+          "style": "silver",
+          "min": 4,
+          "max": 5
+        },
+        {
+          "style": "gold",
+          "min": 6
+        }
+      ],
+      "stats": {
+        "2": "5% %i:scaleSV%, 18% %i:scaleAD%",
+        "4": "7% %i:scaleSV%, 35% %i:scaleAD%",
+        "6": "10% %i:scaleSV%, 55% %i:scaleAD%."
+      }
+    },
+    {
+      "key": "Mecha",
+      "ingameKey": "TFT17_Mecha",
+      "name": "Mecha",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Mecha_normal_1774318728-Mecha.svg",
+      "type": "ORIGIN",
+      "styles": [
+        {
+          "style": "bronze",
+          "min": 3,
+          "max": 3
+        },
+        {
+          "style": "silver",
+          "min": 4,
+          "max": 5
+        },
+        {
+          "style": "gold",
+          "min": 6
+        }
+      ],
+      "stats": {
+        "3": "Energy Cells: Mechas gain 25% %i:scaleAD%%i:scaleAP%.",
+        "4": "Overclocked Cells: Increased to 40% %i:scaleAD%%i:scaleAP%.",
+        "6": "Precision Engineering: +1 max team size"
+      }
+    },
+    {
+      "key": "Meeple",
+      "ingameKey": "TFT17_Astronaut",
+      "name": "Meeple",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Meeple_normal_1774318871-Meeple.svg",
+      "type": "ORIGIN",
+      "styles": [
+        {
+          "style": "bronze",
+          "min": 3,
+          "max": 4
+        },
+        {
+          "style": "silver",
+          "min": 5,
+          "max": 6
+        },
+        {
+          "style": "gold",
+          "min": 7,
+          "max": 9
+        },
+        {
+          "style": "chromatic",
+          "min": 10
+        }
+      ],
+      "stats": {
+        "3": "2 %i:set14AmpIcon%, 100 %i:scaleHealth%",
+        "5": "3 %i:set14AmpIcon%, 350 %i:scaleHealth%",
+        "7": "4 %i:set14AmpIcon%, 450 %i:scaleHealth%. Create a Cloning Slot on your bench. Gain gold and a 1-star copy of the champion placed there when cloning completes.",
+        "10": "6 %i:set14AmpIcon%, 550 %i:scaleHealth%. SUMMON THE FOUR MEEPLORDS!"
+      }
+    },
+    {
+      "key": "NOVA",
+      "ingameKey": "TFT17_DRX",
+      "name": "N.O.V.A.",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/NOVA_normal_1774318702-NOVA.svg",
+      "type": "ORIGIN",
+      "styles": [
+        {
+          "style": "bronze",
+          "min": 2,
+          "max": 4
+        },
+        {
+          "style": "gold",
+          "min": 5
+        }
+      ],
+      "stats": {
+        "2": "6 seconds into combat, N.O.V.A. grant a power surge to allies based on champions.",
+        "5": "Gain a Striker selector. The chosen N.O.V.A. activates their Strike during the power surge."
+      }
+    },
+    {
+      "key": "PartyAnimal",
+      "ingameKey": "TFT17_BlitzcrankUniqueTrait",
+      "name": "Party Animal",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/PartyAnimal_normal_1774319196-PartyAnimal.svg",
+      "type": "CLASS",
+      "styles": [
+        {
+          "style": "gold",
+          "min": 1
+        }
+      ],
+      "stats": {}
+    },
+    {
+      "key": "Primordian",
+      "ingameKey": "TFT17_Primordian",
+      "name": "Primordian",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Primordian_normal_1774318936-Primordian.svg",
+      "type": "ORIGIN",
+      "styles": [
+        {
+          "style": "bronze",
+          "min": 2,
+          "max": 2
+        },
+        {
+          "style": "gold",
+          "min": 3
+        }
+      ],
+      "stats": {
+        "2": "Dealing damage spawns Swarmlings based on unique Primordian star level.",
+        "3": "Spawn 45% more Swarmlings! After each player combat, gain a random 1 or 2-cost champion."
+      }
+    },
+    {
+      "key": "Psionic",
+      "ingameKey": "TFT17_PsyOps",
+      "name": "Psionic",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Psionic_normal_1774318910-Psionic.svg",
+      "type": "ORIGIN",
+      "styles": [
+        {
+          "style": "bronze",
+          "min": 2,
+          "max": 3
+        },
+        {
+          "style": "gold",
+          "min": 4
+        }
+      ],
+      "stats": {
+        "2": "Gain the ?",
+        "4": "Gain the ?, Psionic items gain extra effects on Psionic units"
+      }
+    },
+    {
+      "key": "Redeemer",
+      "ingameKey": "TFT17_RhaastUniqueTrait",
+      "name": "Redeemer",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Redeemer_normal_1774318714-Redeemer.svg",
+      "type": "ORIGIN",
+      "styles": [
+        {
+          "style": "gold",
+          "min": 1
+        }
+      ],
+      "stats": {
+        "1": "For each non-unique trait you have active, your team gains 2% Attack Speed, and 2 Armor and Magic Resist."
+      }
+    },
+    {
+      "key": "Replicator",
+      "ingameKey": "TFT17_APTrait",
+      "name": "Replicator",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Replicator_normal_1774319028-Replicator.svg",
+      "type": "CLASS",
+      "styles": [
+        {
+          "style": "bronze",
+          "min": 2,
+          "max": 3
+        },
+        {
+          "style": "gold",
+          "min": 4
+        }
+      ],
+      "stats": {
+        "2": "22% strength",
+        "4": "50% strength"
+      }
+    },
+    {
+      "key": "Rogue",
+      "ingameKey": "TFT17_AssassinTrait",
+      "name": "Rogue",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Rogue_normal_1774319042-Rogue.svg",
+      "type": "CLASS",
+      "styles": [
+        {
+          "style": "bronze",
+          "min": 2,
+          "max": 2
+        },
+        {
+          "style": "silver",
+          "min": 3,
+          "max": 3
+        },
+        {
+          "style": "silver",
+          "min": 4,
+          "max": 4
+        },
+        {
+          "style": "gold",
+          "min": 5
+        }
+      ],
+      "stats": {
+        "2": "12% %i:scaleAD% %i:scaleAP%",
+        "3": "25% %i:scaleAD% %i:scaleAP%",
+        "4": "45% %i:scaleAD% %i:scaleAP%",
+        "5": "60% %i:scaleAD% %i:scaleAP%"
+      }
+    },
+    {
+      "key": "Shepherd",
+      "ingameKey": "TFT17_SummonTrait",
+      "name": "Shepherd",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Shepherd_normal_1774319001-Shepherd.svg",
+      "type": "CLASS",
+      "styles": [
+        {
+          "style": "bronze",
+          "min": 3,
+          "max": 4
+        },
+        {
+          "style": "silver",
+          "min": 5,
+          "max": 6
+        },
+        {
+          "style": "gold",
+          "min": 7
+        }
+      ],
+      "stats": {
+        "3": "Summon Bia",
+        "5": "Summon Bayin",
+        "7": "Bia and Bayin's bond grows deeper"
+      }
+    },
+    {
+      "key": "Sniper",
+      "ingameKey": "TFT17_RangedTrait",
+      "name": "Sniper",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Sniper_normal_1774319167-Sniper.svg",
+      "type": "CLASS",
+      "styles": [
+        {
+          "style": "bronze",
+          "min": 2,
+          "max": 2
+        },
+        {
+          "style": "silver",
+          "min": 3,
+          "max": 3
+        },
+        {
+          "style": "gold",
+          "min": 4
+        }
+      ],
+      "stats": {
+        "2": "18% %i:scaleDA%; +2% %i:scaleDA% per hex",
+        "3": "25% %i:scaleDA%; +3% %i:scaleDA% per hex",
+        "4": "35% %i:scaleDA%; +4% %i:scaleDA% per hex"
+      }
+    },
+    {
+      "key": "SpaceGroove",
+      "ingameKey": "TFT17_SpaceGroove",
+      "name": "Space Groove",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/SpaceGroove_normal_1774318853-SpaceGroove.svg",
+      "type": "ORIGIN",
+      "styles": [
+        {
+          "style": "bronze",
+          "min": 1,
+          "max": 2
+        },
+        {
+          "style": "silver",
+          "min": 3,
+          "max": 4
+        },
+        {
+          "style": "silver",
+          "min": 5,
+          "max": 6
+        },
+        {
+          "style": "gold",
+          "min": 7,
+          "max": 9
+        },
+        {
+          "style": "chromatic",
+          "min": 10
+        }
+      ],
+      "stats": {
+        "1": "Groovians can enter The Groove. While in it, they gain Attack Speed and max Health Regen, increased per Groovian on your team.",
+        "3": "All Groovians start combat in The Groove for 4 seconds.",
+        "5": "Each second spent in The Groove grants 5% stacking Attack Damage and Ability Power.",
+        "7": "Increase these effects by 10%!",
+        "10": "Get your Groove on!"
+      }
+    },
+    {
+      "key": "Stargazer",
+      "ingameKey": "TFT17_Stargazer",
+      "name": "Stargazer",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Stargazer_normal_1774318739-Stargazer.svg",
+      "type": "ORIGIN",
+      "styles": [
+        {
+          "style": "bronze",
+          "min": 3,
+          "max": 4
+        },
+        {
+          "style": "silver",
+          "min": 5,
+          "max": 6
+        },
+        {
+          "style": "gold",
+          "min": 7
+        },
+        {
+          "style": "gold",
+          "min": 8
+        },
+        {
+          "style": "gold",
+          "min": 9
+        },
+        {
+          "style": "gold",
+          "min": 10
+        }
+      ],
+      "stats": {}
+    },
+    {
+      "key": "StargazerAltar",
+      "ingameKey": "TFT17_Stargazer_Shield",
+      "name": "Stargazer (The Altar)",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Stargazer_normal_1774318739-Stargazer.svg",
+      "type": "ORIGIN",
+      "styles": [
+        {
+          "style": "gold",
+          "min": 3
+        }
+      ],
+      "stats": {
+        "3": "When ANY champion dies, they are sacrificed to the Altar. Allies in empowered hexes gain 8% Health and 8% Attack Speed.<br><br>After 60 sacrifices, Stargazers in empowered hexes gain an additional 20% %i:scaleHealth% and 18% %i:scaleAS%<br><br>Sacrifices: (? / 60)"
+      }
+    },
+    {
+      "key": "StargazerBoar",
+      "ingameKey": "TFT17_Stargazer_Wolf",
+      "name": "Stargazer (The Boar)",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Stargazer_normal_1774318739-Stargazer.svg",
+      "type": "ORIGIN",
+      "styles": [
+        {
+          "style": "bronze",
+          "min": 3,
+          "max": 3
+        },
+        {
+          "style": "silver",
+          "min": 4,
+          "max": 4
+        },
+        {
+          "style": "silver",
+          "min": 5,
+          "max": 5
+        },
+        {
+          "style": "gold",
+          "min": 6
+        }
+      ],
+      "stats": {
+        "3": "1 gold, 2% %i:scaleHealth%, 10% %i:scaleAD%%i:scaleAP%",
+        "4": "2 gold, 8% %i:scaleHealth%, 15% %i:scaleAD%%i:scaleAP%",
+        "5": "4 gold, 15% %i:scaleHealth%, 25% %i:scaleAD%%i:scaleAP%",
+        "6": "6 gold, 22% %i:scaleHealth%, 30% %i:scaleAD%%i:scaleAP%"
+      }
+    },
+    {
+      "key": "StargazerFountain",
+      "ingameKey": "TFT17_Stargazer_Fountain",
+      "name": "Stargazer (The Fountain)",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Stargazer_normal_1774318739-Stargazer.svg",
+      "type": "ORIGIN",
+      "styles": [
+        {
+          "style": "bronze",
+          "min": 3,
+          "max": 4
+        },
+        {
+          "style": "gold",
+          "min": 5
+        }
+      ],
+      "stats": {
+        "3": "4% %i:scaleAD% %i:scaleAP%",
+        "5": "9% %i:scaleAD% %i:scaleAP%"
+      }
+    },
+    {
+      "key": "StargazerHuntress",
+      "ingameKey": "TFT17_Stargazer_Huntress",
+      "name": "Stargazer (The Huntress)",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Stargazer_normal_1774318739-Stargazer.svg",
+      "type": "ORIGIN",
+      "styles": [
+        {
+          "style": "bronze",
+          "min": 3,
+          "max": 4
+        },
+        {
+          "style": "silver",
+          "min": 5,
+          "max": 6
+        },
+        {
+          "style": "gold",
+          "min": 7
+        }
+      ],
+      "stats": {
+        "3": "15% %i:scaleAS%, 3 marks",
+        "5": "45% %i:scaleAS%, 5 marks",
+        "7": "70% %i:scaleAS%, 9 marks"
+      }
+    },
+    {
+      "key": "StargazerMedallion",
+      "ingameKey": "TFT17_Stargazer_Medallion",
+      "name": "Stargazer (The Medallion)",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Stargazer_normal_1774318739-Stargazer.svg",
+      "type": "ORIGIN",
+      "styles": [
+        {
+          "style": "gold",
+          "min": 3
+        }
+      ],
+      "stats": {
+        "3": "Allies in empowered hexes gain 15% Damage Amp, which increases by 5% for each 3-star ally."
+      }
+    },
+    {
+      "key": "StargazerMountain",
+      "ingameKey": "TFT17_Stargazer_Mountain",
+      "name": "Stargazer (The Mountain)",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Stargazer_normal_1774318739-Stargazer.svg",
+      "type": "ORIGIN",
+      "styles": [
+        {
+          "style": "bronze",
+          "min": 3,
+          "max": 3
+        },
+        {
+          "style": "silver",
+          "min": 4,
+          "max": 4
+        },
+        {
+          "style": "silver",
+          "min": 5,
+          "max": 5
+        },
+        {
+          "style": "silver",
+          "min": 6,
+          "max": 6
+        },
+        {
+          "style": "silver",
+          "min": 7,
+          "max": 7
+        },
+        {
+          "style": "gold",
+          "min": 8,
+          "max": 8
+        },
+        {
+          "style": "gold",
+          "min": 9,
+          "max": 9
+        },
+        {
+          "style": "gold",
+          "min": 10,
+          "max": 10
+        },
+        {
+          "style": "chromatic",
+          "min": 11
+        }
+      ],
+      "stats": {
+        "3": "Gain 15% Health",
+        "4": "AND 15% Attack Damage and Ability Power",
+        "5": "AND 10 Armor and Magic Resist",
+        "6": "AND 8% Attack Speed",
+        "7": "AND 5% Durability",
+        "8": "AND increase all other bonuses by 10%",
+        "9": "I can see the summit...",
+        "10": "...almost there...",
+        "11": "The stars beckon all enemies"
+      }
+    },
+    {
+      "key": "StargazerSerpent",
+      "ingameKey": "TFT17_Stargazer_Serpent",
+      "name": "Stargazer (The Serpent)",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Stargazer_normal_1774318739-Stargazer.svg",
+      "type": "ORIGIN",
+      "styles": [
+        {
+          "style": "bronze",
+          "min": 3,
+          "max": 4
+        },
+        {
+          "style": "silver",
+          "min": 5,
+          "max": 6
+        },
+        {
+          "style": "gold",
+          "min": 7
+        }
+      ],
+      "stats": {
+        "3": "5% %i:scaleDR%, 25% poison damage",
+        "5": "10% %i:scaleDR%, 45% poison damage",
+        "7": "15% %i:scaleDR%, 60% poison damage"
+      }
+    },
+    {
+      "key": "Timebreaker",
+      "ingameKey": "TFT17_Timebreaker",
+      "name": "Timebreaker",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Timebreaker_normal_1774318770-Timebreaker.svg",
+      "type": "ORIGIN",
+      "styles": [
+        {
+          "style": "bronze",
+          "min": 2,
+          "max": 2
+        },
+        {
+          "style": "silver",
+          "min": 3,
+          "max": 3
+        },
+        {
+          "style": "gold",
+          "min": 4
+        }
+      ],
+      "stats": {
+        "2": "Allies gain 12% Attack Speed.",
+        "3": "AND When you lose, gain free rerolls. When you win, store XP in a Temporal Core (scales with stage).",
+        "4": "AND Timebreakers gain an additional 50% Attack Speed"
+      }
+    },
+    {
+      "key": "Vanguard",
+      "ingameKey": "TFT17_ShieldTank",
+      "name": "Vanguard",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Vanguard_normal_1774319070-Vanguard.svg",
+      "type": "CLASS",
+      "styles": [
+        {
+          "style": "bronze",
+          "min": 2,
+          "max": 3
+        },
+        {
+          "style": "silver",
+          "min": 4,
+          "max": 5
+        },
+        {
+          "style": "gold",
+          "min": 6
+        }
+      ],
+      "stats": {
+        "2": "16% max Health",
+        "4": "30% max Health",
+        "6": "40% max Health;<br>8% %i:scaleDR% while Shielded"
+      }
+    },
+    {
+      "key": "Voyager",
+      "ingameKey": "TFT17_FlexTrait",
+      "name": "Voyager",
+      "imageUrl": "https://cdn.lolchess.gg/upload/images/traits/Voyager_normal_1774319208-Voyager.svg",
+      "type": "CLASS",
+      "styles": [
+        {
+          "style": "bronze",
+          "min": 2,
+          "max": 2
+        },
+        {
+          "style": "silver",
+          "min": 3,
+          "max": 3
+        },
+        {
+          "style": "silver",
+          "min": 4,
+          "max": 4
+        },
+        {
+          "style": "silver",
+          "min": 5,
+          "max": 5
+        },
+        {
+          "style": "gold",
+          "min": 6
+        }
+      ],
+      "stats": {
+        "2": "175 Shield; 9% %i:scaleDA%",
+        "3": "250 Shield; 15% %i:scaleDA%",
+        "4": "350 Shield; 18% %i:scaleDA%",
+        "5": "500 Shield; 22% %i:scaleDA%",
+        "6": "700 Shield; 27% %i:scaleDA%"
+      }
+    }
+  ]
+}

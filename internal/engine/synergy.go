@@ -17,6 +17,7 @@ func ChampionVector(c *catalog.Catalog, championKey string) Vector {
 	return v
 }
 
+// Synergy es la similitud coseno entre los traits de dos campeones.
 func Synergy(a, b Vector) float64 {
 	var dot, magA, magB float64
 	for key, va := range a {

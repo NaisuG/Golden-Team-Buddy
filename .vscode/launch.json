@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Wails: Production wails-scratch",
+      "name": "Wails: Production golden-team-buddy",
       "type": "go",
       "request": "launch",
       "mode": "exec",

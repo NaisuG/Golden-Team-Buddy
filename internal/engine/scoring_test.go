@@ -27,8 +27,6 @@ func buildTestCatalog() *catalog.Catalog {
 func TestTraitStrengthBreakpoints(t *testing.T) {
 	c := buildTestCatalog()
 
-	// Todo-o-nada: 2 Anima no activa nada (bronce pide 3). No hay
-	// puntos intermedios por "ir acercándose".
 	cases := []struct {
 		name     string
 		team     []string
@@ -42,7 +40,7 @@ func TestTraitStrengthBreakpoints(t *testing.T) {
 	for _, tc := range cases {
 		got := TraitStrength(c, tc.team)
 		if got != tc.expected {
-			t.Errorf("%s: TraitStrength() = %v; want %v", tc.name, got, tc.expected)
+			t.Errorf("%s: TraitStrength() = %v, quería %v", tc.name, got, tc.expected)
 		}
 	}
 }
@@ -62,7 +60,7 @@ func TestAverageSynergy(t *testing.T) {
 	for _, tc := range cases {
 		got := AverageSynergy(c, tc.team)
 		if !floatsEqual(got, tc.expected) {
-			t.Errorf("%s: AverageSynergy() = %v; want %v", tc.name, got, tc.expected)
+			t.Errorf("%s: AverageSynergy() = %v, quería %v", tc.name, got, tc.expected)
 		}
 	}
 }
@@ -70,27 +68,24 @@ func TestAverageSynergy(t *testing.T) {
 func TestComputeScoreStrongerBeatsWeaker(t *testing.T) {
 	c := buildTestCatalog()
 
-	weak := ComputeScore(c, []string{"Illaoi", "Jinx"}, nil, 5)
-	strong := ComputeScore(c, []string{"Illaoi", "Jinx", "Briar", "Aurora", "Meepsie"}, nil, 5)
+	weak := ComputeScore(c, []string{"Illaoi", "Jinx"}, Owned{})
+	strong := ComputeScore(c, []string{"Illaoi", "Jinx", "Briar", "Aurora", "Meepsie"}, Owned{})
 
-	if strong.Total <= weak.Total {
-		t.Errorf("composición de 5 Anima (Total=%v) debería puntuar más que una de 2 (Total=%v)",
-			strong.Total, weak.Total)
+	if !lexicographicBetter(strong, weak) {
+		t.Errorf("composición de 5 Anima (%+v) debería ganarle a una de 2 (%+v)", strong, weak)
 	}
 }
 
-func TestFeasibilityIgnoresOwnedChampions(t *testing.T) {
-	c := catalog.New()
-	c.Champions["Caro"] = catalog.Champion{Key: "Caro", Cost: 5} // 0% a nivel 1
+func TestActiveTraits(t *testing.T) {
+	c := buildTestCatalog()
 
-	notOwned := Feasibility(c, []string{"Caro"}, nil, 1)
-	if notOwned != 0 {
-		t.Errorf("Feasibility sin owned = %v; quería 0 (costo 5 a nivel 1 es imposible)", notOwned)
+	if got := ActiveTraits(c, []string{"Illaoi", "Jinx"}); len(got) != 0 {
+		t.Errorf("con 2 Anima no debería haber traits activos, hay %v", got)
 	}
 
-	owned := map[string]bool{"Caro": true}
-	isOwned := Feasibility(c, []string{"Caro"}, owned, 1)
-	if isOwned != 1.0 {
-		t.Errorf("Feasibility con Caro en owned = %v; quería 1.0 (ya lo tenés, no hace falta que aparezca)", isOwned)
+	got := ActiveTraits(c, []string{"Illaoi", "Jinx", "Briar", "Aurora", "Meepsie"})
+	want := ActiveTrait{Name: "Anima", Count: 5, Style: "gold"}
+	if len(got) != 1 || got[0] != want {
+		t.Errorf("ActiveTraits() = %v, quería [%v]", got, want)
 	}
 }
